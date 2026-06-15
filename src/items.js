@@ -36,7 +36,7 @@ class Progress extends Type {
 
 
 export class TodoItem {
-    static idSoFar = 1;
+    static idSoFar = 0;
     constructor(title, description, dueDate, priority, color, type) {
         this.title = title;
         this.description = description;
