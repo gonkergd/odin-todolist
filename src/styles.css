@@ -55,11 +55,16 @@ fieldset {
 }
 
 .todo-item-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
 }
 
 .description {
     font-size: 1rem;
     color: grey;
+}
+
+.editable:hover {
+    border: 2px solid rgba(128, 128, 128, 0.524);
+    border-radius: 4px;
 }
