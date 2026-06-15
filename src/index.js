@@ -13,6 +13,7 @@ newProject.addEventListener("submit", (e) => {
     const projectTitle = document.createElement("div");
     projectTitle.className = "title";
     projectTitle.textContent = formData.get("title");
+    projectDiv.className = "project todo-list";
     projectDiv.style.backgroundColor = "rgba(" + Math.random() * 255 + ", " + Math.random() * 255 + ", " + Math.random() * 255 + ", 0.2)";
     let todoList = new TodoList(projectDiv);
     projects[todoList.id] = todoList;

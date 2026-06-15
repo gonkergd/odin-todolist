@@ -12,8 +12,8 @@ button {
     font-family: sans-serif;
 }
 
-.projects > div { 
-    height: 40vh;
+.project { 
+    min-height: 40vh;
     width: 45vw;
     border-radius: 10px;
     margin: 4px;
@@ -24,7 +24,7 @@ button {
 }
 
 
-.projects > div > * {
+.project > * {
     margin-top: 8px;
     margin-bottom: 8px;
 }
