@@ -12,12 +12,13 @@ button {
     font-family: sans-serif;
 }
 
-.projects div {
+.projects > div {
     height: 40vh;
     width: 45vw;
     border-radius: 10px;
     margin: 4px;
     padding: 8px;
+    overflow: auto;
 }
 
 .title {
