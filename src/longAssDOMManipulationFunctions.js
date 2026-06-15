@@ -52,12 +52,12 @@ function formInputSelection(fieldset) {
     const checklist = document.createElement("option");
     checklist.value = "checklist";
     checklist.textContent = "Checklist";
-    const progress = document.createElement("option");
-    progress.value = "progress";
-    progress.textContent = "Progress";
+    // const progress = document.createElement("option");
+    // progress.value = "progress";
+    // progress.textContent = "Progress";
     selectType.appendChild(basic);
     selectType.appendChild(checklist);
-    selectType.appendChild(progress);
+    // selectType.appendChild(progress);
     fieldset.appendChild(label);
     fieldset.appendChild(selectType);
 }
