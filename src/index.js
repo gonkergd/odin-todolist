@@ -28,6 +28,8 @@ newProject.addEventListener("submit", (e) => {
     });
 });
 
+newProject.requestSubmit();
+
 function addTodoItem(listID, properties) {
     let todoList = projects[listID];
     properties = (Array.from(properties)).map((n) => n[1]);
@@ -39,6 +41,17 @@ function addTodoItem(listID, properties) {
     4: color (hex)
     5: type
     */
-   const todoItemDiv = document.createElement("div");
-   
+    const todoItemDiv = document.createElement("div");
+    todoItemDiv.className = "todo-item";
+    todoItemDiv.style.backgroundColor = properties[4];
+    const todoItemTitle = document.createElement("div");
+    todoItemTitle.className = "todo-item-title";
+    todoItemTitle.textContent = properties[0];
+    const todoItemInfo = document.createElement("div");
+    todoItemInfo.className = "description";
+    todoItemInfo.textContent = properties[1] + " / Due: " + properties[2];
+    todoItemDiv.style.order = properties[3];
+    todoItemDiv.appendChild(todoItemTitle);
+    todoItemDiv.appendChild(todoItemInfo);
+    todoList.elementReference.appendChild(todoItemDiv);
 }
