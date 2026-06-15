@@ -59,9 +59,12 @@ export class TodoItem {
 // types: basic, checklist, progress (progress bar)
 
 export class TodoList {
+    static idSoFar = 0;
     constructor(element) {
         this.todos = [];
         this.elementReference = element;
+        this.id = idSoFar;
+        idSoFar++;
     }
 
     add(todoItem) {

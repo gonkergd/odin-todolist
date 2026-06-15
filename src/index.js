@@ -14,7 +14,7 @@ newProject.addEventListener("submit", (e) => {
     projectTitle.className = "title";
     projectTitle.textContent = formData.get("title");
     projectDiv.style.backgroundColor = "rgba(" + Math.random() * 255 + ", " + Math.random() * 255 + ", " + Math.random() * 255 + ", 0.2)";
-    let todoList = new TodoList(projectDiv);
+    const todoList = new TodoList(projectDiv);
     projectList.appendChild(projectDiv);
     projectDiv.appendChild(projectTitle);
     const [itemCreationForm, itemCreationButton] = todoItemCreator();
