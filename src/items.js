@@ -1,17 +1,22 @@
 export class TodoItem {
     static idSoFar = 1;
-    constructor(title, description, dueDate, priority, color, checklist) {
+    constructor(title, description, dueDate, priority, color, type) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.color = color;
-        this.checklist = checklist;
+        this.type = type;
         this.id = idSoFar;
         this.done = false;
         idSoFar++;
     }
+    getId() {
+        return this.id;
+    }
 }
+
+// types: basic, checklist, progress (progress bar)
 
 export class TodoList {
     constructor(element) {
@@ -19,8 +24,8 @@ export class TodoList {
         this.elementReference = element;
     }
 
-    add(todo) {
-        this.todos.push(todo);
+    add(todoItem) {
+        this.todos.push(todoItem);
     }
 
     remove(id){

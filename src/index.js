@@ -2,7 +2,7 @@ import { TodoItem, TodoList } from './items.js';
 import "./styles.css";
 
 const newProject = document.querySelector("form");
-const projectList = document.querySelector(".projects")
+const projectList = document.querySelector(".projects");
 let projects = [];
 
 newProject.addEventListener("submit", (e) => {
@@ -13,7 +13,7 @@ newProject.addEventListener("submit", (e) => {
     projectTitle.className = "title";
     projectTitle.textContent = formData.get("title");
     projectDiv.style.backgroundColor = "rgba(" + Math.random() * 255 + ", " + Math.random() * 255 + ", " + Math.random() * 255 + ", 0.2)";
-    projects.push(new TodoList(projectDiv));
+    let todoList = new TodoList(projectDiv);
     projectList.appendChild(projectDiv);
     projectDiv.appendChild(projectTitle);
 })
