@@ -4,13 +4,13 @@ class Type {
     }
 };
 
-class BasicItem extends Type {
+class Basic extends Type {
     constructor() {
         this.type = "basic";
     }
 }
 
-class ChecklistItem extends Type {
+class Checklist extends Type {
     constructor() {
         this.type = "checklist";
         this.checkList = [];
@@ -20,7 +20,7 @@ class ChecklistItem extends Type {
     }
 }
 
-class ProgressItem extends Type {
+class Progress extends Type {
     constructor(progressMax) {
         this.type = "progress";
         this.progressMax = progressMax;
@@ -35,7 +35,7 @@ class ProgressItem extends Type {
 }
 
 
-export class TodoItem extends Type {
+export class TodoItem {
     static idSoFar = 1;
     constructor(title, description, dueDate, priority, color, type) {
         this.title = title;
