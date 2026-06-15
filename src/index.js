@@ -1,8 +1,8 @@
 import { TodoItem, TodoList } from './items.js';
 import "./styles.css";
 import { todoItemCreator } from './longAssDOMManipulationFunctions.js';
-import { expand } from "./assets/expand.svg";
-import { collapse } from "./assets/collapse.svg";
+import expand from "./assets/expand.svg";
+import collapse from "./assets/collapse.svg";
 
 const newProject = document.querySelector("form");
 const projectList = document.querySelector(".projects");
@@ -53,18 +53,79 @@ function addTodoItem(listID, properties) {
     const todoItemDiv = document.createElement("div");
     todoItemDiv.className = "todo-item";
     todoItemDiv.style.backgroundColor = properties[4];
+    todoItemDiv.style.display = "flex";
+    todoItemDiv.style.flexDirection = "column";
+    todoItemDiv.style.order = properties[3];
+
     const todoItemTitle = document.createElement("div");
+    todoItemTitle.style.marginLeft = "8px";
     todoItemTitle.className = "todo-item-title editable";
     todoItemTitle.textContent = properties[0];
+
+    const checkMark = document.createElement("div");
+    checkMark.className = "todo-item-title";
+    checkMark.textContent = "✓";
+    checkMark.addEventListener("click", () => {
+        if (todoItemTitle.style.textDecoration === "") {
+            todoItemTitle.style.textDecoration = "line-through black solid 4px";
+        } else {
+            todoItemTitle.style.textDecoration = "";
+        }
+    });
+
+    const checkMarkAndTitle = document.createElement("div");
+    checkMarkAndTitle.style.display = "flex";
+    checkMark.className = "todo-item-title";
+
     const todoItemDueDate = document.createElement("div");
-    const todoItemDesc = document.createElement("div");
     todoItemDueDate.className = "description editable";
+    todoItemDueDate.textContent = "Due: " + properties[2];
+    
+    const todoItemDesc = document.createElement("div");
     todoItemDesc.className = "description editable";
     todoItemDesc.textContent = properties[1];
-    todoItemDueDate.textContent = "Due: " + properties[2];
-    todoItemDiv.style.order = properties[3];
-    todoItemDiv.appendChild(todoItemTitle);
+
+    const todoItemTitleBox = document.createElement("div");
+    todoItemTitleBox.style.display = "flex";
+    todoItemTitleBox.style.justifyContent = "space-between";
+
+    const expandButton = document.createElement("img");
+    expandButton.src = expand;
+    expandButton.style.width = "1.25rem";
+    expandButton.addEventListener("click", () => {
+        if (expandButton.src === expand) {
+            expandButton.src = collapse;
+            todoItemDiv.appendChild(todoItemDesc);
+        } else {
+            expandButton.src = expand;
+            todoItemDiv.removeChild(todoItemDesc);
+        }
+    });
+
+    const destroyThisItem = document.createElement("button");
+    destroyThisItem.textContent = "Delete";
+    destroyThisItem.addEventListener("click", () => {
+        todoItemDiv.remove();
+    })
+
+    todoItemTitle.addEventListener("click", (e) => {
+        const x = prompt("Set todo item name: ", todoItemTitle.textContent);
+        if (x != null) todoItemTitle.textContent = x;
+    });
+    todoItemDueDate.addEventListener("click", (e) => {
+        const x = prompt("Set due date: ", todoItemDueDate.textContent.substring(5));
+        if (x != null) todoItemDueDate.textContent = "Due: " + x;
+    });
+    todoItemDesc.addEventListener("click", (e) => {
+        const x = prompt("Set description: ", todoItemDesc.textContent);
+        if (x != null) todoItemDesc.textContent = x;
+    });
+    checkMarkAndTitle.appendChild(checkMark);
+    checkMarkAndTitle.appendChild(todoItemTitle);
+    todoItemTitleBox.appendChild(checkMarkAndTitle);
+    todoItemTitleBox.appendChild(expandButton);
+    todoItemDiv.appendChild(todoItemTitleBox);
     todoItemDiv.appendChild(todoItemDueDate);
-    todoItemDiv.appendChild(todoItemDesc);
+    todoItemDiv.appendChild(destroyThisItem);
     todoList.elementReference.appendChild(todoItemDiv);
 }
