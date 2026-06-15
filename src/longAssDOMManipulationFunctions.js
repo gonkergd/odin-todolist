@@ -16,7 +16,7 @@ export function todoItemCreator() {
     button.style.marginLeft = "8px";
     button.style.marginTop = "8px";
     fieldset.appendChild(button);
-    return [makeTodoItem, button];
+    return makeTodoItem;
 }
 
 function formInput(fieldset, name, htmlName, type, required) {
