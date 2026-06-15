@@ -19,7 +19,7 @@ export function todoItemCreator() {
     return [makeTodoItem, button];
 }
 
-export function formInput(fieldset, name, htmlName, type, required) {
+function formInput(fieldset, name, htmlName, type, required) {
     const label = document.createElement("label");
     label.style.marginRight = "8px";
     label.style.marginLeft = "8px";
@@ -35,7 +35,7 @@ export function formInput(fieldset, name, htmlName, type, required) {
     fieldset.appendChild(input);
 }
 
-export function formInputSelection(fieldset) {
+function formInputSelection(fieldset) {
     const selectType = document.createElement("select");
     selectType.id = "item-select";
     selectType.name = "item-select";
