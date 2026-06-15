@@ -7,7 +7,7 @@ export function todoItemCreator() {
     legend.textContent = "Create a Todo Item: ";
     formInput(fieldset, "Item name", "item-name", "text");
     formInput(fieldset, "Description", "description", "text", false);
-    formInput(fieldset, "Due Date", "dueDate", "date");
+    formInput(fieldset, "Due Date", "due-date", "date");
     formInput(fieldset, "Priority", "priority", "number");
     formInput(fieldset, "Color", "color", "color");
     formInputSelection(fieldset);
