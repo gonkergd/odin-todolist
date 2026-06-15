@@ -21,6 +21,12 @@ button {
     overflow: auto;
 }
 
+
+.projects > div > * {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
 .title {
     font-weight: bold;
 }
