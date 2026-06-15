@@ -16,7 +16,7 @@ export function todoItemCreator() {
     button.style.marginLeft = "8px";
     button.style.marginTop = "8px";
     fieldset.appendChild(button);
-    makeTodoItem.style.order = Number.MAX_SAFE_INTEGER;
+    makeTodoItem.style.order = Number.MAX_SAFE_INTEGER - 1;
     return makeTodoItem;
 }
 
