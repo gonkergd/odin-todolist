@@ -7,3 +7,19 @@
 button {
     align-self: flex-start;
 }
+
+* {
+    font-family: sans-serif;
+}
+
+.projects div {
+    height: 40vh;
+    width: 45vw;
+    border-radius: 10px;
+    margin: 4px;
+    padding: 8px;
+}
+
+.title {
+    font-weight: bold;
+}
