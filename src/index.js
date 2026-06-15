@@ -14,10 +14,30 @@ newProject.addEventListener("submit", (e) => {
     projectTitle.className = "title";
     projectTitle.textContent = formData.get("title");
     projectDiv.style.backgroundColor = "rgba(" + Math.random() * 255 + ", " + Math.random() * 255 + ", " + Math.random() * 255 + ", 0.2)";
-    const todoList = new TodoList(projectDiv);
+    let todoList = new TodoList(projectDiv);
+    projects[todoList.id] = todoList;
     projectList.appendChild(projectDiv);
     projectDiv.appendChild(projectTitle);
-    const [itemCreationForm, itemCreationButton] = todoItemCreator();
+    const itemCreationForm = todoItemCreator();
     projectDiv.appendChild(itemCreationForm);
-})
+    itemCreationForm.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const newFormData = new FormData(ev.target);
+        addTodoItem(todoList.id, newFormData);
+    });
+});
 
+function addTodoItem(listID, properties) {
+    let todoList = projects[listID];
+    properties = (Array.from(properties)).map((n) => n[1]);
+    /* 
+    0: name
+    1: description
+    2: due date
+    3: priority
+    4: color (hex)
+    5: type
+    */
+   const todoItemDiv = document.createElement("div");
+   
+}
