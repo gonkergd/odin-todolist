@@ -35,3 +35,8 @@ button {
     border: 2px solid red;
     border-radius: 4px;
 }
+
+fieldset {
+    border: 2px solid rgb(171, 169, 169);
+    border-radius: 2px;
+}
