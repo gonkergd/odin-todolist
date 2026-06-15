@@ -14,6 +14,7 @@ button {
 
 .project { 
     min-height: 40vh;
+    max-height: 80vh;
     width: 45vw;
     border-radius: 10px;
     margin: 4px;
