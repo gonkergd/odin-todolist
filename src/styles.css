@@ -32,6 +32,7 @@ button {
 
 .title {
     font-weight: bold;
+    font-size: 2rem;
 }
 
 :user-invalid {
@@ -49,5 +50,16 @@ fieldset {
     height: 20%;
     border-radius: 10px;
     margin: 4px;
-    padding: 4px;
+    padding: 12px;
+    overflow-wrap: break-word;
+}
+
+.todo-item-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 1rem;
+    color: grey;
 }
