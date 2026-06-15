@@ -48,6 +48,9 @@ export class TodoItem extends Type {
         this.done = false;
         idSoFar++;
     }
+    markDone() {
+        done = !this.done;
+    }
     getId() {
         return this.id;
     }
