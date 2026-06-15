@@ -44,9 +44,9 @@ export class TodoItem {
         this.priority = priority;
         this.color = color;
         this.type = type;
-        this.id = idSoFar;
+        this.id = TodoItem.idSoFar;
         this.done = false;
-        idSoFar++;
+        TodoItem.idSoFar++;
     }
     markDone() {
         done = !this.done;
@@ -63,8 +63,8 @@ export class TodoList {
     constructor(element) {
         this.todos = [];
         this.elementReference = element;
-        this.id = idSoFar;
-        idSoFar++;
+        this.id = TodoList.idSoFar;
+        TodoList.idSoFar++;
     }
 
     add(todoItem) {
