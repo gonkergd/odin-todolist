@@ -1,25 +1,3 @@
-class Type {
-    getType() {
-        return this.type;
-    }
-};
-
-class Basic extends Type {
-    constructor() {
-        this.type = "basic";
-    }
-}
-
-class Checklist extends Type {
-    constructor() {
-        this.type = "checklist";
-        this.checkList = [];
-    }
-    addCheckItem(item) {
-        this.checkList(false, item);
-    }
-}
-
 // class Progress extends Type {
 //     constructor(progressMax) {
 //         this.type = "progress";
@@ -37,7 +15,8 @@ class Checklist extends Type {
 
 export class TodoItem {
     static idSoFar = 0;
-    constructor(title, description, dueDate, priority, color, type) {
+    constructor(title, description, dueDate, priority, color, type, element) {
+        this.destroyed = false;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -46,6 +25,7 @@ export class TodoItem {
         this.type = type;
         this.id = TodoItem.idSoFar;
         this.done = false;
+        this.elementReference = element;
         TodoItem.idSoFar++;
     }
     markDone() {
@@ -56,12 +36,32 @@ export class TodoItem {
     }
 }
 
+export class ChecklistItem extends TodoItem {
+    constructor(title, description, dueDate, priority, color, type, element) {
+        super(title, description, dueDate, priority, color, type, element);
+        this.checklist = [];
+    }
+    addToChecklist(item) {
+        this.checklist.push(item);
+        return item;
+    }
+}
+
+export class CheckItem {
+    constructor(name, element) {
+        this.name = name;
+        this.done = false;
+        this.elementReference = element;
+    }
+}
+
 // types: basic, checklist, progress (progress bar)
 
 export class TodoList {
     static idSoFar = 0;
-    constructor(element) {
+    constructor(element, name) {
         this.todos = [];
+        this.name = name;
         this.elementReference = element;
         this.id = TodoList.idSoFar;
         TodoList.idSoFar++;
@@ -69,6 +69,7 @@ export class TodoList {
 
     add(todoItem) {
         this.todos.push(todoItem);
+        return this.todos.length - 1;
     }
 
     remove(id){
