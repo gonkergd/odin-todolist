@@ -52,6 +52,7 @@ fieldset {
     margin: 4px;
     padding: 12px;
     overflow-wrap: break-word;
+    overflow: scroll;
 }
 
 .todo-item-title {
@@ -67,4 +68,13 @@ fieldset {
 .editable:hover {
     border: 2px solid rgba(128, 128, 128, 0.524);
     border-radius: 4px;
+}
+
+.description-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.checklist-item {
+    margin-top: 4px;
 }

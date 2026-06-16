@@ -86,6 +86,13 @@ function addTodoItem(listID, properties) {
     todoItemDesc.style.marginTop = "4px";
     todoItemDesc.className = "description editable";
     todoItemDesc.textContent = properties[1];
+    todoItemDesc.style.order = 1;
+
+    const todoItemDescChecklist = document.createElement("div");
+    if (properties[5].toLowerCase() === "checklist") {
+        todoItemDesc.appendChild(todoItemDescChecklist);
+        todoItemDescChecklist.style.order = 3;
+    }
 
     const todoItemTitleBox = document.createElement("div");
     todoItemTitleBox.style.display = "flex";
@@ -94,26 +101,37 @@ function addTodoItem(listID, properties) {
     const expandButton = document.createElement("img");
     expandButton.src = expand;
     expandButton.style.width = "1.25rem";
+
+    const checkmarkItemCreator = document.createElement("button");
+    checkmarkItemCreator.style.order = 2;
+    checkmarkItemCreator.textContent = "Create checklist item...";
+    checkmarkItemCreator.addEventListener("click", () => {
+        const pulse = prompt("Create checklist item...");
+        if (pulse != null) {
+            createCheckmarkItem(todoItemDescChecklist, pulse);
+        }
+    });
+
     expandButton.addEventListener("click", () => {
         if (expandButton.src === expand) {
             expandButton.src = collapse;
             descriptionBox.appendChild(todoItemDesc);
             if (properties[5].toLowerCase() === "checklist") {
-                const checkmarkItemCreator = document.createElement("button");
-                checkmarkItemCreator.addEventListener("click", () => {
-                    const pulse = prompt("Create checklist item...");
-                    if (pulse != null) {
-                        createCheckmarkItem(todoItemDesc, pulse);
-                    }
-                });
+                descriptionBox.appendChild(todoItemDescChecklist);
+                descriptionBox.appendChild(checkmarkItemCreator);
             }
         } else {
             expandButton.src = expand;
             descriptionBox.removeChild(todoItemDesc);
+            if (properties[5].toLowerCase() === "checklist") {
+                descriptionBox.removeChild(checkmarkItemCreator);
+                descriptionBox.removeChild(todoItemDescChecklist);
+            }
         }
     });
 
     const descriptionBox = document.createElement("div");
+    descriptionBox.className = "description-box";
 
     const destroyThisItem = document.createElement("button");
     destroyThisItem.textContent = "Delete";
@@ -146,7 +164,7 @@ function addTodoItem(listID, properties) {
 }
 
 function createCheckmarkItem(todoItemDesc, desc) {
-    let checkmark = document.createElement("div");
+    const checkmark = document.createElement("div");
     checkmark.textContent = "✓";
     checkmark.addEventListener("click", () => {
         if (checkmarkDesc.style.textDecoration === "") {
@@ -155,11 +173,25 @@ function createCheckmarkItem(todoItemDesc, desc) {
             checkmarkDesc.style.textDecoration = "";
         }
     });
-    let checkmarkDesc = document.createElement("div");
+    const checkmarkDesc = document.createElement("div");
     checkmarkDesc.textContent = desc;
-    let checkmarkButton = document.createElement("div");
+    checkmarkDesc.className = "editable";
+    checkmarkDesc.addEventListener("click", () => {
+        const newName = prompt("Give your checkmark item a new name...");
+        if (newName != null) checkmarkDesc.textContent = newName;
+    });
+    const checkmarkButton = document.createElement("div");
+    const destructionButton = document.createElement("button");
+    destructionButton.textContent = "Remove";
+    destructionButton.addEventListener("click", () => {
+        checkmarkButton.remove();
+    });
+    destructionButton.style.marginLeft = "4px";
     checkmarkButton.style.display = "flex";
+    checkmarkButton.style.order = 3;
+    checkmarkButton.className = "checklist-item";
     checkmarkButton.appendChild(checkmark);
     checkmarkButton.appendChild(checkmarkDesc);
+    checkmarkButton.appendChild(destructionButton);
     todoItemDesc.appendChild(checkmarkButton);
 }
