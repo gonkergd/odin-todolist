@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+<script defer src="main.js"></script></head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Create a project</legend>
+            <label for="title">Title</label>
+            <input id="title" type="text" name="title" value="Project" required />
+            <button id="submit">New Project</button>
+        </fieldset>
+    </form>
+    <button class="test" style="margin: 8px">(Debug) Log Storage to Console</button>
+    <button onclick="localStorage.clear(); window.location.reload();" style="margin: 8px; background-color: red;">Clear Projects</button>
+    <div class="projects">
+
+    </div>
+</body>
+</html>
