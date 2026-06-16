@@ -166,6 +166,7 @@ function addTodoItem(listID, properties) {
 function createCheckmarkItem(todoItemDesc, desc) {
     const checkmark = document.createElement("div");
     checkmark.textContent = "✓";
+    checkmark.className = "editable checkmark-centering";
     checkmark.addEventListener("click", () => {
         if (checkmarkDesc.style.textDecoration === "") {
             checkmarkDesc.style.textDecoration = "line-through black solid 4px";
@@ -175,7 +176,7 @@ function createCheckmarkItem(todoItemDesc, desc) {
     });
     const checkmarkDesc = document.createElement("div");
     checkmarkDesc.textContent = desc;
-    checkmarkDesc.className = "editable";
+    checkmarkDesc.className = "editable checkmark-centering";
     checkmarkDesc.addEventListener("click", () => {
         const newName = prompt("Give your checkmark item a new name...");
         if (newName != null) checkmarkDesc.textContent = newName;

@@ -92,3 +92,8 @@ button {
 button:hover {
     background-color: rgb(6, 6, 25);
 }
+
+.checkmark-centering {
+    display: flex;
+    align-items: center;
+}
