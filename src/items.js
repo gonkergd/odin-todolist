@@ -20,19 +20,19 @@ class Checklist extends Type {
     }
 }
 
-class Progress extends Type {
-    constructor(progressMax) {
-        this.type = "progress";
-        this.progressMax = progressMax;
-        this.progress = 0;
-    }
-    setProgression(x) {
-        this.progress = x;
-    }
-    addProgression(x) {
-        this.progress = x;
-    }
-}
+// class Progress extends Type {
+//     constructor(progressMax) {
+//         this.type = "progress";
+//         this.progressMax = progressMax;
+//         this.progress = 0;
+//     }
+//     setProgression(x) {
+//         this.progress = x;
+//     }
+//     addProgression(x) {
+//         this.progress = x;
+//     }
+// }
 
 
 export class TodoItem {
