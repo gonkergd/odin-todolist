@@ -33,6 +33,7 @@ newProject.addEventListener("submit", (e) => {
     destructionButton.style.order = Number.MAX_SAFE_INTEGER;
     destructionButton.addEventListener("click", (ev) => {
         destructionButton.parentElement.remove();
+        projects[todoList.id] = null;
     });
     projectDiv.appendChild(destructionButton);
 });
@@ -82,6 +83,7 @@ function addTodoItem(listID, properties) {
     todoItemDueDate.textContent = "Due: " + properties[2];
     
     const todoItemDesc = document.createElement("div");
+    todoItemDesc.style.marginTop = "4px";
     todoItemDesc.className = "description editable";
     todoItemDesc.textContent = properties[1];
 
@@ -95,15 +97,27 @@ function addTodoItem(listID, properties) {
     expandButton.addEventListener("click", () => {
         if (expandButton.src === expand) {
             expandButton.src = collapse;
-            todoItemDiv.appendChild(todoItemDesc);
+            descriptionBox.appendChild(todoItemDesc);
+            if (properties[5].toLowerCase() === "checklist") {
+                const checkmarkItemCreator = document.createElement("button");
+                checkmarkItemCreator.addEventListener("click", () => {
+                    const pulse = prompt("Create checklist item...");
+                    if (pulse != null) {
+                        createCheckmarkItem(todoItemDesc, pulse);
+                    }
+                });
+            }
         } else {
             expandButton.src = expand;
-            todoItemDiv.removeChild(todoItemDesc);
+            descriptionBox.removeChild(todoItemDesc);
         }
     });
 
+    const descriptionBox = document.createElement("div");
+
     const destroyThisItem = document.createElement("button");
     destroyThisItem.textContent = "Delete";
+    destroyThisItem.style.marginTop = "4px";
     destroyThisItem.addEventListener("click", () => {
         todoItemDiv.remove();
     })
@@ -126,6 +140,26 @@ function addTodoItem(listID, properties) {
     todoItemTitleBox.appendChild(expandButton);
     todoItemDiv.appendChild(todoItemTitleBox);
     todoItemDiv.appendChild(todoItemDueDate);
+    todoItemDiv.appendChild(descriptionBox);
     todoItemDiv.appendChild(destroyThisItem);
     todoList.elementReference.appendChild(todoItemDiv);
+}
+
+function createCheckmarkItem(todoItemDesc, desc) {
+    let checkmark = document.createElement("div");
+    checkmark.textContent = "✓";
+    checkmark.addEventListener("click", () => {
+        if (checkmarkDesc.style.textDecoration === "") {
+            checkmarkDesc.style.textDecoration = "line-through black solid 4px";
+        } else {
+            checkmarkDesc.style.textDecoration = "";
+        }
+    });
+    let checkmarkDesc = document.createElement("div");
+    checkmarkDesc.textContent = desc;
+    let checkmarkButton = document.createElement("div");
+    checkmarkButton.style.display = "flex";
+    checkmarkButton.appendChild(checkmark);
+    checkmarkButton.appendChild(checkmarkDesc);
+    todoItemDesc.appendChild(checkmarkButton);
 }
